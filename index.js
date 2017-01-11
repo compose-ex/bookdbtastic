@@ -1,3 +1,5 @@
+// Setting up the web engine
+
 var express = require('express');
 var expressHbs = require('express-handlebars');
 var bodyParser = require('body-parser');
@@ -15,10 +17,12 @@ app.use(bodyParser.urlencoded({
   limit: '50mb'
 }));
 
+// Setting up the datamodels
+
 var mongoose = require("mongoose");
 var mongoosastic=require("mongoosastic");
 
-mongoose.connect(process.env.COMPOSE_URL);
+mongoose.Promise = global.Promise;
 
 var bookSchema = new mongoose.Schema({
   title: String,
@@ -27,14 +31,10 @@ var bookSchema = new mongoose.Schema({
   content: { type:String, es_indexed:true }
 });
 
+mongoose.connect(process.env.COMPOSEMONGODBURL);
 bookSchema.plugin(mongoosastic,{
-  host:"haproxy2.dblayer.com",
-  port: 10293,
-  protocol: "https",
-  auth: "codepope:esr0b0c0p"
-//  ,curlDebug: true
+  hosts: [ process.env.COMPOSEESURL ]
 });
-
 
 var Book = mongoose.model("Book", bookSchema);
 
@@ -48,6 +48,10 @@ Book.createMapping(function(err, mapping){
   }
 });
 
+
+// With the database going to be open as some point in the future, we can
+// now set up our web server. First up we set it to server static pages
+app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res) {
   res.render('index');
@@ -134,7 +138,7 @@ app.get("/esearch/", function(req,res) {
 
 app.post("/esearch/", function(req,res) {
   var terms=req.body.terms;
-  Book.search({ query:terms }, function(err,results) {
+  Book.search({ query_string: { query:terms } }, function(err,results) {
     res.render("esearch", { terms:terms, books:results.hits.hits })
   });
 });
@@ -145,9 +149,10 @@ app.get("/hesearch/", function(req,res) {
 
 app.post("/hesearch/", function(req,res) {
   var terms=req.body.terms;
-  Book.search({ query:terms }, { hydrate:true }, function(err,results) {
+  Book.search({ query_string: { query:terms } }, { hydrate:true }, function(err,results) {
     res.render("hesearch", { terms:terms, books:results.hits.hits })
   });
 });
 
+console.log("Listening on localhost:3000")
 app.listen(3000);

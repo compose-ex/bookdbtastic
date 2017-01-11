@@ -9,11 +9,11 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.9.1",
-    "express": "^4.9.8",
-    "express-handlebars": "^1.1.0",
-    "handlebars": "^2.0.0",
-    "mongoosastic": "^1.0.2",
-    "mongoose": "^3.8.18"
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "express-handlebars": "^3.0.0",
+    "handlebars": "^4.0.6",
+    "mongoosastic": "^4.2.4",
+    "mongoose": "^4.7.6"
   }
 }

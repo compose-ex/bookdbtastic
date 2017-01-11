@@ -1,25 +1,28 @@
+<H3>Elasticsearch Search</H3>
+
 <form action="/esearch/" method="post">
-<label for="terms">Search:</label>
-<input type="string" size=80 id="terms" name="terms" value="{{ terms }}"/><br/>
-<INPUT type="submit" value="Search"><br/>
+    <label for="terms"><INPUT type="submit" value="Search"></label>
+    <input type="string" size=80 id="terms" name="terms" value="{{ terms }}" /><br/>
 </form>
 
-<table width="100%">
-  {{#if books}}
-        {{#each books}}
-            <tr>
-                <td>{{_score}}</td>
-                <td>{{_source.description}}</td>
-                <td>{{_source.content}}
-                <td>
-                    <a href="/edit/{{_id}}">Edit</a>
-                    <a href="/delete/{{_id}}">Delete</a>
-                </td>
-            </tr>
-        {{/each}}
-    {{else}}
-        <tr>
-            <td colspan="4" class="text-center">No data to display.</td>
-        </tr>
-    {{/if}}
-</table>
+{{#if books}}
+    <hr/>
+    {{#each books}}
+        <div class="book">
+            <div class="controls">
+                <a href="/edit/{{_id}}">Edit</a>
+                <a href="/delete/{{_id}}">Delete</a>
+            </div>
+            <div class="score"><span class="label">Score:</span>{{_score}}</div>
+            <div class="title"><span class="label">Title:</span> {{_source.title}}</div>
+            <div class="author"><span class="label">Author:</span> {{_source.author}}</div>
+            <div><span class="label">Description:</span> {{_source.description}}
+            </div>
+            <div><span class="label">Content:</span><pre>{{_source.content}}</pre>
+            </div>
+        </div>
+        <hr/>
+    {{/each}}
+{{else}}
+    <div>No data to display.</div>
+{{/if}}

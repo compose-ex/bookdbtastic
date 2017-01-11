@@ -1,25 +1,25 @@
+<H3>Simple Title Search</H3>
+
 <form action="/search/" method="post">
-<label for="terms">Search:</label>
+<label for="terms"><INPUT type="submit" value="Search"></label>
 <input type="string" size=80 id="terms" name="terms" value="{{ terms }}"/><br/>
-<INPUT type="submit" value="Search"><br/>
 </form>
 
-<table width="100%">
-  {{#if books}}
-        {{#each books}}
-            <tr>
-                <td>{{title}}</td>
-                <td>{{author}}</td>
-                <td>{{description}}</td>
-                <td>
-                    <a href="/edit/{{_id}}">Edit</a>
-                    <a href="/delete/{{_id}}">Delete</a>
-                </td>
-            </tr>
-        {{/each}}
-    {{else}}
-        <tr>
-            <td colspan="4" class="text-center">No data to display.</td>
-        </tr>
-    {{/if}}
-</table>
+{{#if books}}
+    <hr/>
+    {{#each books}}
+        <div class="book">
+            <div class="controls">
+                <a href="/edit/{{_id}}">Edit</a>
+                <a href="/delete/{{_id}}">Delete</a>
+            </div>
+            <div class="score"><span class="label">Score:</span>{{_score}}</div>
+            <div class="title"><span class="label">Title:</span> {{title}}</div>
+            <div class="author"><span class="label">Author:</span> {{author}}</div>
+            <div><span class="label">Description:</span> {{description}}</div>
+        </div>
+        <hr/>
+    {{/each}}
+{{else}}
+    <div>No data to display.</div>
+{{/if}}

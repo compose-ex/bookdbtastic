@@ -1,0 +1,98 @@
+/* style.css
+ * This file provides css styles.
+ */
+
+body, html {
+    background-color: #3b4b54;
+    width: 100%;
+    height: 100%;
+    margin: 20px;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    color: #ffffff;
+}
+
+.hidden {
+    display: none;
+}
+
+a, span.linklike {
+    text-decoration: none;
+    color: #00aed1;
+}
+
+a:hover, span.linklike:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.newappIcon {
+    display: block;
+    margin: 0 auto;
+    max-width: 200px;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 2em;
+}
+
+h2 {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.leftHalf {
+    float: left;
+    background-color: #26343f;
+    width: 45%;
+    height: 100%;
+}
+
+.rightHalf {
+    float: right;
+    width: 55%;
+    background-color: #313f4a;
+    height: 100%;
+    overflow: auto;
+}
+
+.blue {
+    color: #00aed1;
+}
+
+pre {
+    padding: 0;
+    margin: 0;
+}
+
+div.book {
+    width: 80%;
+    border: 1px;
+}
+
+span.label {
+    font-weight: bold;
+    vertical-align: top;
+}
+
+textarea.contentdisplay {
+    width: 80em;
+    height: 10em;
+}
+
+.formLayout {
+    display: table;
+}
+
+.labelcell {
+    display: table-cell;
+    vertical-align: top;
+}
+
+.valuecell {
+  display: table-cell;
+}
+.fake-row {
+    display: table-row;
+    margin: 5em;
+}

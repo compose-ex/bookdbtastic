@@ -1,11 +1,25 @@
-<form action="/update/{{ id }}" method="post">
-  <label for="title">Title:</label>
-  <input type="string" size=80 id="title" name="title" value="{{ title }}"/><br/>
-  <label for="author">Author:</label>
-  <input type="string" size=80 id="author" name="author" value="{{ author }}"/><br/>
-  <label for="description">Description:</label>
-  <textarea id="description" name="description" rows=5 cols=80>{{ description }}</textarea><br/>
-  <label for="content">Content:</label>
-  <textarea id="content" name="content" rows=5 cols=80>{{ content }}</textarea><br/>
-  <INPUT type="submit" value="{{ action }}"><br/>
+<div class="formLayout">
+  <form action="/update/{{ id }}"  method="post">
+    <div class="fake-row">
+        <div class="labelcell"><label for="title">Title:</label></div>
+        <div class="valuecell"><input type="string" size=80 id="title" name="title" value="{{ title }}" /></div>
+    </div>
+    <div class="fake-row">
+        <div class="labelcell"><label for="author">Author:</label></div>
+        <div class="valuecell"><input type="string" size=80 id="author" name="author" value="{{ author }}" /></div>
+    </div>
+    <div class="fake-row">
+
+        <div class="labelcell"><label for="description">Description:</label></div>
+        <div class="valuecell"><textarea id="description" name="description" class=rows=5 cols=80>{{ description }}</textarea></div>
+    </div>
+    <div class="fake-row">
+        <div class="labelcell"><label for="content">Content:</label></div>
+        <div class="valuecell"><textarea id="content" name="content" rows=5 cols=80>{{ content }}</textarea></div>
+    </div>
+    <div class="fake-row">
+        <div class="labelcell"><INPUT type="submit" value="{{ action }}"></div>
+    </div>
+
 </form>
+</div>
